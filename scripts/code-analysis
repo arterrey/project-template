@@ -1,0 +1,20 @@
+#!/bin/sh
+set -e
+BIN_DIR=`dirname $0`
+WORKSPACE_DIR=`dirname $BIN_DIR`
+cd $WORKSPACE_DIR
+
+echo "Performing code analysis..."
+PASS=1
+
+echo "black..."
+bin/black --check app alembic docs/conf.py || PASS=0
+echo "flake8..."
+bin/flake8 app alembic docs/conf.py || PASS=0
+
+if [ $PASS -eq 1 ]; then
+    echo 'Done.'
+else
+    echo 'Fail.'
+    exit 1
+fi

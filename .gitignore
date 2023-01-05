@@ -1,0 +1,39 @@
+# General files to ignore
+/.mypy_cache 
+/.undodir/
+/Session.vim
+/out.txt
+/out.csv
+/out.tab
+*.code-workspace
+*.egg-info
+*.pyc
+*.pyo
+*.swp
+.DS_Store
+Thumbs.db
+__pycache__
+node_modules
+
+# Potentially sensitive files
+/etc/local.ini
+*_rsa*
+*_ed25519*
+google_cloud_service_account.json
+invoke.yaml
+invoke.yml
+
+# Python Virtual Environment
+/bin/*
+/etc/jupyter/
+/pyenv.cfg
+/include/
+/lib/
+/lib64
+/share/
+pyvenv.cfg
+
+# Build products and local development artifacts 
+/docs/_build/
+/var/
+/mail/

@@ -1,0 +1,30 @@
+# VS Code and Workflow Dependencies
+black
+isort
+mypy
+flake8
+flake8-blind-except
+flake8-commas
+flake8-debugger
+flake8-deprecated
+flake8-pep3101
+flake8-quotes
+flake8-todo
+flake8-mypy
+
+# Testing dependencies
+zope.testrunner
+
+# Documentation dependencies
+Sphinx
+sphinx-autobuild
+furo
+sphinxcontrib-napoleon
+sphinxcontrib-programoutput
+
+# Package testing
+zope.testing
+
+# Package depencencies
+
+# Workspace dependencies

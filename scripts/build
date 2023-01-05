@@ -1,0 +1,78 @@
+#!/usr/bin/env python
+import argparse
+import os
+import sys
+from pathlib import Path
+from subprocess import run
+
+
+def install_python_project(args):
+    print("Create python virtual environment...")
+    run("python3 -m venv .", shell=True, check=True)
+    run("bin/pip -q install --upgrade pip", shell=True, check=True)
+
+    print("Install python dependencies...")
+    if args.newest:
+        run("bin/pip -q install --requirement requirements.txt", shell=True, check=True)
+    else:
+        run(
+            "bin/pip -q install --requirement requirements-pinned.txt --requirement requirements.txt",
+            shell=True,
+            check=True,
+        )
+
+    print("Install python application...")
+    run("bin/pip -q install --editable .", shell=True, check=True)
+
+    print("Install python manual dependences...")
+    run(
+        "bin/pip -q install --upgrade psycopg2-binary --no-binary psycopg2-binary --use-feature=no-binary-enable-wheel-cache",
+        shell=True,
+        check=True,
+    )
+
+    print("Writing pinned versions to requirements-stable.txt...")
+    run(
+        "bin/pip freeze --exclude-editable --exclude psycopg2-binary  > requirements-pinned.txt",
+        shell=True,
+        check=True,
+    )
+
+
+def build_docs(args):
+    print("Building documentation...")
+    run("bin/sphinx-build -Q -b html docs docs/_build", shell=True, check=True)
+
+
+def main(args: list[str]) -> int:
+    assert sys.version_info[0] == 3, "Python 3 is required"
+
+    script_path = Path(__file__).resolve()
+    project_path = script_path.parent.parent
+    os.chdir(project_path)
+
+    parser = argparse.ArgumentParser(
+        description=(
+            "Build the project. Assumes a compatible container enviorment, see "
+            ".devcontainer/Dockerfile for reference."
+        )
+    )
+    parser.add_argument(
+        "--newest",
+        "-n",
+        help="Ignore requirenments-pinned.txt when installing dependencies.",
+        action="store_true",
+    )
+    args = parser.parse_args(args)
+
+    print("Building project...")
+
+    print("Create var directory...")
+    run("mkdir -p var/log", shell=True, check=True)
+
+    install_python_project(args)
+    build_docs(args)
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))

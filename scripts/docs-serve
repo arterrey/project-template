@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -e
+
+# CD to the workspace
+BIN_DIR=`dirname $0`
+WORKSPACE_DIR=`dirname $BIN_DIR`
+cd $WORKSPACE_DIR
+
+# It is possible that the autobuild keep exiting on start
+# due to an error in the docs folder. This prevents the
+# cpu from being used 100% in this case.
+sleep 3
+
+# Serve the docs
+exec bin/sphinx-autobuild --host 0.0.0.0 --port 8111 docs docs/_build

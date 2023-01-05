@@ -1,0 +1,11 @@
+[flake8]
+max-line-length = 106
+extend-ignore = E203 T499
+inline-quotes = double
+mypy-config=.mypy-flake8.ini
+exclude =
+    .git,
+    __pycache__,
+    bin,
+    include,
+    lib
