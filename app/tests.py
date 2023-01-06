@@ -43,7 +43,7 @@ Example ``my_inttest.py``::
 """
 import unittest
 
-import app
+import app.project
 
 
 def test_suite():
@@ -67,7 +67,7 @@ def integration_test_suite():
 
 
 def _test_suite_test_cases(pattern="*_test.py"):
-    top_level_dir = str(app.get_project_path())
+    top_level_dir = str(app.project.project_path_get())
     return unittest.TestLoader().discover(
         top_level_dir,
         pattern=pattern,
