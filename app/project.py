@@ -33,19 +33,22 @@ def logging_configure() -> None:
 
 def settings_read(
     section: str | None = None,
+    path: Path | None = None,
 ) -> dict[str, str]:
     """Reading settings from path and environment.
 
     Args:
         section (str | None): The section to read from the config file overriding
             the default section. If not given, only the default section is used.
+        path (Path | None): The path to the config file. If not given, the path
+            is determined using :func:`settings_path_get`.
 
     Returns:
         dict[str, str]: The settings.
     """
     # Read values from config file
     parser = ConfigParser()
-    path = settings_path_get()
+    path = path or settings_path_get()
     parser.read(path)
     if section is None:
         settings = {**parser["DEFAULT"]}
