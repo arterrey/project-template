@@ -1,0 +1,5 @@
+#!/bin/sh
+BIN_DIR=`dirname $0`
+WORKSPACE_DIR=`dirname $BIN_DIR`
+cd $WORKSPACE_DIR
+exec bin/zope-testrunner --test-path . "$@"
