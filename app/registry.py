@@ -1,5 +1,5 @@
 """The application registry is an object that is used to manage and maintain a set
-of global objects and methodds that are available to the application. It is
+of global objects and methods that are available to the application. It is
 designed to be configured during process startup and live for the duration of
 the process.
 
