@@ -16,3 +16,4 @@ class RegistryTest(TestCase):
         registry = Registry(settings={"foo": "bar"})
         self.assertEqual(registry.settings, {"foo": "bar"})
         settings_read.assert_not_called()
+        
