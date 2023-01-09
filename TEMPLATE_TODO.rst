@@ -13,5 +13,10 @@ Things to do when copying this template
 4. Edit ``README.rst`` and write the name and description of your project. At
    some stage you will need to write how to run the project as a first time user
 
+5. Rename ``RENAME_ME.code-workspace.in`` to ``<project_name>.code-workspace``
+   and update the ``project_name`` property to the name of your project.
+   Be sure to have the original ``RENAME_ME.code-workspace.in`` file removed
+   from the repository.
+
 
 
