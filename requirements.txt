@@ -17,8 +17,8 @@ zope.testrunner
 
 # Documentation dependencies
 Sphinx
-sphinx-autobuild
 furo
+sphinx-autobuild
 sphinxcontrib-napoleon
 sphinxcontrib-programoutput
 
@@ -26,5 +26,8 @@ sphinxcontrib-programoutput
 zope.testing
 
 # Package depencencies
+google-cloud-secret-manager
+requests
+types-requests
 
 # Workspace dependencies
